@@ -1,5 +1,15 @@
-version: 1.0.0
-updated_at: "2025-10-20T10:00:00Z"
+updated_at: 2025-10-20
+version: 1.3.0
+
+# ------------------------------------------------------
+# CHANGE NOTES
+# ------------------------------------------------------
+# • Added strict enforcement rules — ChatGPT must not add, rename, or reorder sections.
+# • Added bulleted output style (using "•") — paragraphs under sections are disallowed.
+# • Added enforcement flags to reject non-bulleted content or unrecognized sections.
+# • Retained existing formatting: bolded section titles, one section per line, concise tone.
+# • Added updated_at field for tracking configuration version changes.
+# ------------------------------------------------------
 
 formatting:
   bold_section_titles: true
@@ -7,19 +17,29 @@ formatting:
   tone: concise
   prompt_for_screenshots: true
   ka_field_description: "Klaviyo Account ID (6-char alphanumeric)"
-  missing_info_policy: "flag_only"   # never invent details
-  missing_flag: "🚩"                 # use for missing/unclear info
-  evidence_flag: "🔵"                # use to suggest links/screenshots/logs
-  skip_notes_sections: true          # never populate any line labeled "Notes:"
+  missing_info_policy: "flag_only"
+  missing_flag: "🚩"
+  evidence_flag: "🔵"
+  skip_notes_sections: true
+  bullet_output: true
+  bullet_symbol: "•"
+  bullets_per_section_min: 1
+
+enforcement:
+  mode: strict
+  reject_extra_sections: true
+  derive_sections_from: body
+  normalize_titles: true
+  enforce_bulleted_format: true
 
 runtime_guidance: |
-  - Never invent or infer details. If any required information is missing or unclear, output: "🚩 Missing: <what's missing>".
-  - When a link, log, or screenshot would materially help, add: "🔵 Add: <what would help>" on its own line.
-  - **Never fill or summarize any section labeled "Notes:"** — leave it blank as a visual divider only.
-  - Keep each section on its own line with bolded titles. Be concise and factual.
-  - Do not include PII. If user content includes PII, omit it and add "🚩 Missing: PII-safe reference".
-  - For "KA", expect a 6-character alphanumeric identifier.
-  - If a provided section is irrelevant, omit it (do not fill with guesses); if you are unsure, mark with "🚩 Missing:".
+  - Each section’s content **must** be a bulleted list using the "•" symbol.
+  - Each bullet should start with a lowercase letter (unless it’s a proper noun or link).
+  - No free-form paragraphs allowed beneath section titles.
+  - For missing or placeholder details, include one bullet: "• 🚩 Missing: <detail>".
+  - **Never invent or infer details.**
+  - Keep each section concise and factual.
+  - Do not add, rename, or reorder sections beyond those defined in the template body.
 
 templates:
   - slug: chat-core
