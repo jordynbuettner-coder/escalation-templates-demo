@@ -1,0 +1,183 @@
+version: 1.0.0
+updated_at: "2025-10-20T10:00:00Z"
+
+formatting:
+  bold_section_titles: true
+  section_per_line: true
+  tone: concise
+  prompt_for_screenshots: true
+  ka_field_description: "Klaviyo Account ID (6-char alphanumeric)"
+  missing_info_policy: "flag_only"   # never invent details
+  missing_flag: "🚩"                 # use for missing/unclear info
+  evidence_flag: "🔵"                # use to suggest links/screenshots/logs
+  skip_notes_sections: true          # never populate any line labeled "Notes:"
+
+runtime_guidance: |
+  - Never invent or infer details. If any required information is missing or unclear, output: "🚩 Missing: <what's missing>".
+  - When a link, log, or screenshot would materially help, add: "🔵 Add: <what would help>" on its own line.
+  - **Never fill or summarize any section labeled "Notes:"** — leave it blank as a visual divider only.
+  - Keep each section on its own line with bolded titles. Be concise and factual.
+  - Do not include PII. If user content includes PII, omit it and add "🚩 Missing: PII-safe reference".
+  - For "KA", expect a 6-character alphanumeric identifier.
+  - If a provided section is irrelevant, omit it (do not fill with guesses); if you are unsure, mark with "🚩 Missing:".
+
+templates:
+  - slug: chat-core
+    name: "Chat Core Escalation"
+    body: |
+      **Name of POD or POD captain:** 
+      **Link to post in pod channel:** 🔵 Add: Slack link to internal pod post
+      **What is the customer's issue:** 
+      **Integration involved with the issue (if any):** 
+      **Links to relevant profiles/flows/campaigns/forms/Templates/reports involved in the customer's issue:**
+      **Profiles:** 🔵 Add: profile links
+      **Flows/Campaigns/Templates/Forms:** 🔵 Add: links
+      **Reports:** 🔵 Add: report links
+      **Screenshots shared by the customer:** 🔵 Add: screenshots if available
+      **Troubleshooting already done (include screenshots if necessary):** 
+      **Anything else worth noting (waiting on customer / next steps):** 
+
+  - slug: backline
+    name: "Backline Escalation"
+    body: |
+      **Notes:** 
+      **KA:** 
+      **Integration:** 
+      **Issue:** 
+      **Supporting Details (screenshots, etc):** 🔵 Add: screenshots/logs
+      **Troubleshooting already done:** 
+      **Roadblock:** 
+      **Missing Zendesk Product Area:** 
+
+  - slug: partner-support
+    name: "Partner Support Escalation"
+    body: |
+      **Notes:** 
+      **KA:** 
+      **Integration:** 
+      **Issue:** 
+      **Details:** 🔵 Add: relevant links/screenshots
+
+  - slug: at-scale
+    name: "At Scale Escalation"
+    body: |
+      **To At Scale Team,**
+      **Account Name / ID:** 
+      **MRR:** 
+      **Details:** 
+      **Thank you!**
+
+  - slug: billing-refund
+    name: "Billing Refund Escalation"
+    body: |
+      **Account ID:** 
+      **Issue / Reason for refund:** 
+      **Amount to be refunded:** 
+      **Links to relevant content (if any):** 🔵 Add: invoices/tickets
+      **Screenshots shared by the customer:** 🔵 Add: screenshots if available
+      **Anything else worth noting (waiting on customer / next steps):** 
+
+  - slug: billing-general
+    name: "Billing General Escalation"
+    body: |
+      **KA:** 
+      **Integration Type:** 
+      **Issue:** 
+      **Supporting Details:** 🔵 Add: links/screenshots
+      **Troubleshooting already done:** 
+
+  - slug: dc-pod
+    name: "D&C Pod Escalation"
+    body: |
+      **KA:** 
+      **Name of POD or POD captain:** 
+      **Link to post in pod channel:** 🔵 Add: Slack link
+      **Issue:** 
+      **Supporting Details:** 🔵 Add: deliverability reports/links
+      **Troubleshooting already done:** 
+
+  - slug: dev-pod
+    name: "Dev Pod Escalation"
+    body: |
+      **KA:** 
+      **Name of POD or POD captain:** 
+      **Link to post in pod channel:** 🔵 Add: Slack link
+      **Issue:** 
+      **Supporting Details:** 🔵 Add: logs/screenshots
+      **Troubleshooting already done:** 
+
+  - slug: k-service
+    name: "K-Service Escalation"
+    body: |
+      **KA:** 
+      **Issue TLDR:** 
+      **Supporting Details:** 🔵 Add: links/screenshots/screencasts
+      **Evidence:** 🔵 Add: reproduction steps or video if useful
+
+  - slug: reviews-pod
+    name: "Reviews Pod Escalation"
+    body: |
+      **KA:** 
+      **Issue TLDR:** 
+      **Supporting Details:** 🔵 Add: links/screenshots/screencasts
+      **Evidence:** 🔵 Add: review examples or references
+
+  - slug: sl-pod
+    name: "S&L Pod Escalation"
+    body: |
+      **KA:** 
+      **Name of POD or POD captain:** 
+      **Link to post in pod channel:** 🔵 Add: Slack link
+      **Issue:** 
+      **Supporting Details:** 🔵 Add: links/screenshots
+      **Troubleshooting already done:** 
+
+  - slug: se-api-sftp
+    name: "SE API SFTP Escalation"
+    body: |
+      **KA:** 
+      **Issue:** 
+
+      **API Specific Info**
+      **Customer data they’re trying to retrieve (and high-level use):** 
+      **If unknown, provide dev log/SFTP context instead:** 🔵 Add: link to API call in dev logs or SFTP import
+      **Code (request the customer is attempting):** 🔵 Add: code snippet
+      **Payload & endpoint:** 🔵 Add: endpoint + payload
+      **Response:** 🔵 Add: response snippet or error
+
+  - slug: se-back-in-stock
+    name: "SE Back in Stock Escalation"
+    body: |
+      **KA:** 
+      **Integration:** 
+      **Issue:** 
+      **Supporting Details (screenshots):** 🔵 Add: screenshots
+
+      **Back in Stock Specific Info**
+      **OOS product link to reproduce:** 🔵 Add: product URL
+      **Shop Theme:** 
+      **Console errors:** 🔵 Add: error list or screenshot
+      **Attempts to resolve so far:** 
+
+  - slug: se-catalog
+    name: "SE Catalog Escalation"
+    body: |
+      **KA:** 
+      **Integration:** 
+      **Issue:** 
+      **Supporting Details:** 🔵 Add: links/screenshots
+
+      **Catalog Specific Info**
+      **Affected Product IDs/SKUs:** 
+      **Plugin Version (e.g., PrestaShop/Magento/Woo):** 
+      **Platform Version (e.g., WooCommerce version):** 
+      **Attempts to resolve so far:** 
+
+  - slug: se-general
+    name: "SE General Escalation"
+    body: |
+      **Qualify (SE owns this?):** API & Dev Tools, Self-hosted Integrations (Woo, Magento/M2, PrestaShop, SFCC, Mi9). Otherwise escalate to Backline.
+      **KA:** 
+      **Integration:** 
+      **Issue:** 
+      **Troubleshooting done (docs/guides/screenshots/etc):** 🔵 Add: links/screenshots
