@@ -1,9 +1,14 @@
-updated_at: 2025-10-20
-version: 1.3.0
+updated_at: 2025-10-27
+version: 1.3.1
 
 # ------------------------------------------------------
 # CHANGE NOTES
 # ------------------------------------------------------
+# v1.3.1 — 2025-10-27
+# • Updated bullet capitalization rule — all bullets must now start with an uppercase letter.
+# • Incremented version and updated date for registry tracking.
+#
+# v1.3.0 — 2025-10-20
 # • Added strict enforcement rules — ChatGPT must not add, rename, or reorder sections.
 # • Added bulleted output style (using "•") — paragraphs under sections are disallowed.
 # • Added enforcement flags to reject non-bulleted content or unrecognized sections.
@@ -34,7 +39,7 @@ enforcement:
 
 runtime_guidance: |
   - Each section’s content **must** be a bulleted list using the "•" symbol.
-  - Each bullet should start with a lowercase letter (unless it’s a proper noun or link).
+  - Each bullet should start with an uppercase letter (unless it’s a proper noun or link).
   - No free-form paragraphs allowed beneath section titles.
   - For missing or placeholder details, include one bullet: "• 🚩 Missing: <detail>".
   - **Never invent or infer details.**
