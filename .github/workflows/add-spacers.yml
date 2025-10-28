@@ -42,5 +42,3 @@ jobs:
             formatting
           signoff: false
           delete-branch: true
-
-chore: add GitHub Action to insert \u00A0 spacers automatically
